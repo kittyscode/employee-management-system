@@ -1,5 +1,5 @@
 package com.kirti.employee_management_system.controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,10 @@ import com.kirti.employee_management_system.entity.Department;
 import com.kirti.employee_management_system.entity.Employee;
 import com.kirti.employee_management_system.service.EmployeeService;
 import jakarta.validation.Valid;
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("/employees")
-@CrossOrigin(origins = "*") // Optional: allows requests from frontend
+@RequestMapping("/api/employees")
+//@CrossOrigin(origins = "*") // Optional: allows requests from frontend
 public class EmployeeController {
 
     @Autowired

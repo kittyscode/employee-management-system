@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kirti.employee_management_system.entity.Department;
 import com.kirti.employee_management_system.service.DepartmentService;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/departments")
+@RequestMapping("/api/departments")
 public class DepartmentController {
 	@Autowired
 	private DepartmentService departmentService;
@@ -28,4 +30,22 @@ public class DepartmentController {
 	public List<Department> getAllDepartments(){
 		return departmentService.getAllDepartment();
 	}
+	@GetMapping("/{id}")
+	public Department getDepartmentById(@PathVariable Long id) {
+	    return departmentService.getDepartmentById(id);
+	}
+
+	@PutMapping("/{id}")
+	public Department updateDepartment(
+	        @PathVariable Long id,
+	        @RequestBody Department department) {
+
+	    return departmentService.updateDepartment(id, department);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteDepartment(@PathVariable Long id) {
+	    departmentService.deleteDepartment(id);
+	}
+	
 }

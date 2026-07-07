@@ -13,6 +13,12 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Department {
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,7 +28,7 @@ public class Department {
 	@OneToMany(mappedBy="department")
 	@JsonIgnore
 	private List<Employee> employees;
-	
+	 private String description;
 	
 	public Long getId() {
 		return id;

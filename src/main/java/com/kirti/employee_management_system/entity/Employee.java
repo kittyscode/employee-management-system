@@ -38,6 +38,8 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name="department_id")
     private Department department;
+    @Column(nullable = false)
+    private String status = "Active";
     
 //    // Default Constructor
 //    public Employee() {
