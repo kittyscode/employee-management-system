@@ -2,6 +2,7 @@ package com.kirti.employee_management_system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.kirti.employee_management_system.dto.DepartmentSummaryDTO;
 import com.kirti.employee_management_system.entity.Department;
@@ -44,4 +45,8 @@ public class DepartmentService {
 	public List<DepartmentSummaryDTO> getDepartmentSummary() {
 	    return departmentRepository.getDepartmentSummary();
 	}
+	public List<Department> searchDepartments(String keyword) {
+	    return departmentRepository.findByDepartmentNameContainingIgnoreCase(keyword);
+	}
+	
 }

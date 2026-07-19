@@ -15,6 +15,7 @@ import com.kirti.employee_management_system.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
+	
 //	private static final Integer Long = null;
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -85,5 +86,12 @@ public class EmployeeService {
     	return employeeRepository.findAll(
     			Sort.by("name").descending());
     }
+   
+    public List<Employee> searchEmployees(String keyword) {
+
+        return employeeRepository.findByNameContainingIgnoreCase(keyword);
+
+    }
+    
 	
 }

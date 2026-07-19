@@ -45,9 +45,12 @@ public class EmployeeController {
 
     // Get All Employees
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-    	
-        return ResponseEntity.ok(employeeService.getAllEmployees());
+    public ResponseEntity<Page<Employee>> getEmployees(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        return ResponseEntity.ok(
+                employeeService.getEmployees(PageRequest.of(page, size)));
     }
       
 
@@ -82,16 +85,24 @@ public class EmployeeController {
     public List<Employee> getEmployeeByName(@PathVariable String name) {
     	return employeeService.getEmployeeByName(name);
     }
-    @GetMapping("/page")
-    public Page<Employee> getEmployeeWithPagination(@RequestParam int page,@RequestParam int size){
-    	return employeeService.getEmployees(PageRequest.of(page,size));
-    		
-    	}
+//    @GetMapping("/page")
+//    public Page<Employee> getEmployeeWithPagination(@RequestParam int page,@RequestParam int size){
+//    	return employeeService.getEmployees(PageRequest.of(page,size));
+//    		
+//    	}
     @GetMapping("/sort")
     public List<Employee> getEmployeesSorted(){
     	return employeeService.getEmployeeSorted();
     			
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<Employee>> searchEmployees(
+            @RequestParam String keyword) {
+
+        return ResponseEntity.ok(
+                employeeService.searchEmployees(keyword));
+    }
+    
     }
     	
     

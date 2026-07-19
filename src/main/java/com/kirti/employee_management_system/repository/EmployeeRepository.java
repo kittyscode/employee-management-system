@@ -18,7 +18,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Page<Employee> findAll(Pageable pageable);
 
     Long countByStatus(String status);
-
+   
     @Query("SELECT COALESCE(SUM(e.salary), 0) FROM Employee e")
     Double getTotalPayroll();
+    
+    List<Employee> findByNameContainingIgnoreCase(String keyword);
 }

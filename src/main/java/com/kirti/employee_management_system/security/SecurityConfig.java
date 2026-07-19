@@ -41,15 +41,14 @@ public class SecurityConfig {
             // Authorization Rules
             .authorizeHttpRequests(auth -> auth
 
-                    // Public APIs
-                    .requestMatchers("/api/auth/**").permitAll()
+            		.requestMatchers(
+            		        "/api/auth/**",
+            		        "/api/employees/**",
+            		        "/api/departments/**",
+            		        "/api/reports/**"
+            		).permitAll()
 
-                    // Protected APIs
-                    .requestMatchers("/api/employees/**").authenticated()
-                    .requestMatchers("/api/departments/**").authenticated()
-                    .requestMatchers("/api/reports/**").authenticated()
-
-                    .anyRequest().authenticated())
+            		.anyRequest().permitAll())
 
             // JWT Filter
             .addFilterBefore(

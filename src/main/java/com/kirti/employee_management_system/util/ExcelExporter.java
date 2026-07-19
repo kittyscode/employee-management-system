@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.kirti.employee_management_system.entity.Employee;
+
 public class ExcelExporter {
 
     public static ByteArrayInputStream exportEmployees(List<Employee> employees)
@@ -24,10 +25,10 @@ public class ExcelExporter {
         Row header = sheet.createRow(0);
 
         header.createCell(0).setCellValue("ID");
-        header.createCell(1).setCellValue("First Name");
-        header.createCell(2).setCellValue("Last Name");
-        header.createCell(3).setCellValue("Email");
-        header.createCell(4).setCellValue("Phone");
+        header.createCell(1).setCellValue("Name");
+        header.createCell(2).setCellValue("Email");
+        header.createCell(3).setCellValue("Salary");
+        header.createCell(4).setCellValue("Status");
         header.createCell(5).setCellValue("Department");
 
         int rowNumber = 1;
@@ -36,16 +37,33 @@ public class ExcelExporter {
 
             Row row = sheet.createRow(rowNumber++);
 
-            row.createCell(0).setCellValue(employee.getId());
+            // ID
+            if (employee.getId() != null) {
+                row.createCell(0).setCellValue(employee.getId());
+            } else {
+                row.createCell(0).setCellValue("");
+            }
 
-            row.createCell(1).setCellValue(employee.getFirstName());
+            // Name
+            row.createCell(1).setCellValue(
+                    employee.getName() != null ? employee.getName() : "");
 
-            row.createCell(2).setCellValue(employee.getLastName());
+            // Email
+            row.createCell(2).setCellValue(
+                    employee.getEmail() != null ? employee.getEmail() : "");
 
-            row.createCell(3).setCellValue(employee.getEmail());
+            // Salary
+            if (employee.getSalary() != null) {
+                row.createCell(3).setCellValue(employee.getSalary());
+            } else {
+                row.createCell(3).setCellValue(0);
+            }
 
-            row.createCell(4).setCellValue(employee.getPhone());
+            // Status
+            row.createCell(4).setCellValue(
+                    employee.getStatus() != null ? employee.getStatus() : "");
 
+            // Department
             if (employee.getDepartment() != null) {
 
                 row.createCell(5).setCellValue(
@@ -56,14 +74,11 @@ public class ExcelExporter {
                 row.createCell(5).setCellValue("");
 
             }
-
         }
 
-        // Auto Size Columns
+        // Auto-size columns
         for (int i = 0; i < 6; i++) {
-
             sheet.autoSizeColumn(i);
-
         }
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -73,7 +88,5 @@ public class ExcelExporter {
         workbook.close();
 
         return new ByteArrayInputStream(out.toByteArray());
-
     }
-
 }

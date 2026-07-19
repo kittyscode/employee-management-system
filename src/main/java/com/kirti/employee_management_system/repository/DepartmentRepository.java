@@ -18,4 +18,5 @@ public interface DepartmentRepository extends JpaRepository<Department,Long>{
 		        GROUP BY d.id, d.departmentName, d.description
 		    """)
 		    List<DepartmentSummaryDTO> getDepartmentSummary();
+	  List<Department> findByDepartmentNameContainingIgnoreCase(String keyword);
 }

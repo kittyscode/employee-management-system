@@ -3,10 +3,12 @@ package com.kirti.employee_management_system.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirti.employee_management_system.entity.Department;
@@ -47,5 +49,14 @@ public class DepartmentController {
 	public void deleteDepartment(@PathVariable Long id) {
 	    departmentService.deleteDepartment(id);
 	}
+	@GetMapping("/search")
+	public ResponseEntity<List<Department>> searchDepartments(
+	        @RequestParam String keyword) {
+
+	    return ResponseEntity.ok(
+	            departmentService.searchDepartments(keyword));
+
+	}
+	
 	
 }
