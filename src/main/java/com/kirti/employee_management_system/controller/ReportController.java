@@ -7,7 +7,7 @@ import com.kirti.employee_management_system.dto.ReportDTO;
 import com.kirti.employee_management_system.service.ReportService;
 
 @RestController
-@RequestMapping("/reports")
+@RequestMapping("/api/reports")
 @CrossOrigin(origins = "http://localhost:5173") 
 public class ReportController {
 
@@ -16,6 +16,9 @@ public class ReportController {
 
     @GetMapping("/dashboard")
     public ReportDTO getDashboardReport() {
+
+        System.out.println("REPORT API HIT");
+
         return reportService.getDashboardReport();
     }
 }

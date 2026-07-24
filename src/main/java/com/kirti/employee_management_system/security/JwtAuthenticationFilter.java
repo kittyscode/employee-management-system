@@ -57,6 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 System.out.println("JWT Token : " + token);
 
                 username = jwtTokenProvider.getUsernameFromToken(token);
+                System.out.println("Extracted Username : " + username);
             }
 
             if (username != null
@@ -79,6 +80,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                     SecurityContextHolder.getContext()
                             .setAuthentication(authentication);
+                    System.out.println("Authentication Set Successfully");
                 }
             }
 

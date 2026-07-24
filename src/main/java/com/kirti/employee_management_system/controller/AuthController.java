@@ -14,7 +14,7 @@ import com.kirti.employee_management_system.security.JwtTokenProvider;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:5173")
+
 public class AuthController {
 
     @Autowired

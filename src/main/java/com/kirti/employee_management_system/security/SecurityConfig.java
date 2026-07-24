@@ -26,11 +26,10 @@ public class SecurityConfig {
             throws Exception {
 
         http
+            .cors(cors -> {})
 
-            // Disable CSRF
             .csrf(csrf -> csrf.disable())
 
-            // Handle Unauthorized Requests
             .exceptionHandling(exception ->
                     exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
 

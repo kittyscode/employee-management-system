@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-
+import java.time.LocalDate;
 
 @Entity
 
@@ -32,6 +32,13 @@ public class Employee {
     @Email
     @Column(unique=true)
     private String email;
+    private String phone;
+
+    private String address;
+
+    private String designation;
+
+    private LocalDate joiningDate;
     @Positive
     private Double salary;
 
@@ -40,63 +47,7 @@ public class Employee {
     private Department department;
     @Column(nullable = false)
     private String status = "Active";
-    
-//    // Default Constructor
-//    public Employee() {
-//    }
-//
-//    public Department getDepartment() {
-//		return department;
-//	}
-//
-//	
-//
-//	// Parameterized Constructor
-//    public Employee(Long id, String name, String email, Double salary) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//        this.salary = salary;
-//    }
-//
-//    // Getters and Setters
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-////
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//   
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public Double getSalary() {
-//        return salary;
-//    }
-//
-//    public void setSalary(Double salary) {
-//        this.salary = salary;
-//    }
-//
-//	public void setDepartment(Department department) {
-//		this.department = department;
-//	}
-
-	
+    @Column(name = "profile_image")
+    private String profileImage;
    
  }

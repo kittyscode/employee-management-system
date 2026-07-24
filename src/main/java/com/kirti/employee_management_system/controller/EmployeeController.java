@@ -59,6 +59,10 @@ public class EmployeeController {
 //    public List<Employee> getAllEmployees() {
 //        return employeeService.getAllEmployees();
 //    }
+    @GetMapping("/all")
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable Long id) {
         return employeeService.findById(id).orElseThrow(()->new EmployeeNotFoundException("Employee Not Found with id "+id));
@@ -102,7 +106,7 @@ public class EmployeeController {
         return ResponseEntity.ok(
                 employeeService.searchEmployees(keyword));
     }
-    
+   
     }
     	
     

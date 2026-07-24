@@ -1,7 +1,8 @@
 package com.kirti.employee_management_system.entity;
 
 import jakarta.persistence.*;
-
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
 @Entity
 @Table(name = "user")
 public class User {
@@ -18,18 +19,35 @@ public class User {
 
     @Column(nullable = false)
     private String role;
-
+    @OneToOne
+    @JoinColumn(name = "employee_id")
+    
+    private Employee employee;
     public User() {
     }
 
-    public User(Long id, String username, String password, String role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
+    public User(Long id,
+            String username,
+            String password,
+            String role,
+            Employee employee) {
 
-    public Long getId() {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.role = role;
+    this.employee = employee;
+}
+
+    public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Long getId() {
         return id;
     }
 
