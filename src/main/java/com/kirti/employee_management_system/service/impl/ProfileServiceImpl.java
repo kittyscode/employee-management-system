@@ -150,10 +150,47 @@ public class ProfileServiceImpl implements ProfileService {
 
         System.out.println("Password Match : " + matches);
 
+     // Current password is correct?
         if (!matches) {
-            throw new RuntimeException("Current password incorrect");
+            throw new RuntimeException("Current password is incorrect.");
         }
 
+        // New password required
+        if (request.getNewPassword() == null ||
+            request.getNewPassword().trim().isEmpty()) {
+
+            throw new RuntimeException("New password is required.");
+        }
+
+        // Confirm password required
+        if (request.getConfirmPassword() == null ||
+            request.getConfirmPassword().trim().isEmpty()) {
+
+            throw new RuntimeException("Confirm password is required.");
+        }
+
+        // New password cannot be the same as current password
+        if (request.getCurrentPassword().equals(request.getNewPassword())) {
+
+            throw new RuntimeException(
+                "New password cannot be the same as the current password."
+            );
+        }
+
+        if(request.getNewPassword().length() < 8){
+
+            throw new RuntimeException(
+                "Password must contain at least 8 characters."
+            );
+
+        }
+        // Passwords must match
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+
+            throw new RuntimeException(
+                "New password and confirm password do not match."
+            );
+        }
         String encodedPassword = passwordEncoder.encode(request.getNewPassword());
 
         System.out.println("Encoded Password : " + encodedPassword);
@@ -164,49 +201,7 @@ public class ProfileServiceImpl implements ProfileService {
 
         System.out.println("Password Updated Successfully");
     }
-//    @Override
-//    public UploadImageResponse uploadProfileImage(
-//            String username,
-//            MultipartFile file
-//    ) {
-//
-//        User user = userRepository
-//                .findByUsername(username)
-//                .orElseThrow(
-//                        () -> new RuntimeException("User not found")
-//                );
-//
-//
-//        Employee employee = user.getEmployee();
-//
-//
-//        if(employee == null){
-//            throw new RuntimeException("Employee not found");
-//        }
-//
-//
-//        // temporary implementation
-//        // actual file saving logic will come later
-//
-//        employee.setProfileImage(
-//                file.getOriginalFilename()
-//        );
-//
-//
-//        userRepository.save(user);
-//
-//
-//        UploadImageResponse response = new UploadImageResponse();
-//
-//        response.setMessage("Profile image uploaded successfully");
-//
-//        response.setFileName(
-//                file.getOriginalFilename()
-//        );
-//
-//
-//        return response;
-//    }
+
     @Override
     public UploadImageResponse uploadProfileImage(
             String username,
