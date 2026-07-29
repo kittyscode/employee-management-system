@@ -26,6 +26,7 @@ public class WebConfig implements WebMvcConfigurer{
         configuration.setAllowCredentials(true);
 
         configuration.addAllowedOrigin("http://localhost:5173");
+        configuration.addAllowedOrigin("https://employee-management-system-frontend-production-c574.up.railway.app");
 
         configuration.addAllowedHeader("*");
 
