@@ -291,7 +291,7 @@ public class ProfileServiceImpl implements ProfileService {
             response.setFileName(fileName);
 
             response.setImageUrl(
-            	    "http://localhost:8082/uploads/profile/" + fileName
+            	    "/uploads/profile/" + fileName
             	);
 
             response.setMessage(
