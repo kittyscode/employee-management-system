@@ -8,7 +8,10 @@ import com.kirti.employee_management_system.service.ReportService;
 
 @RestController
 @RequestMapping("/api/reports")
-@CrossOrigin(origins = "http://localhost:5173") 
+@CrossOrigin(origins = {
+	    "http://localhost:5173",
+	    "https://employee-management-system-frontend-production-c574.up.railway.app"
+	})
 public class ReportController {
 
     @Autowired
