@@ -1,5 +1,7 @@
 package com.kirti.employee_management_system.controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.kirti.employee_management_system.exception.EmployeeNotFoundException;
 import com.kirti.employee_management_system.repository.DepartmentRepository;
 import com.kirti.employee_management_system.dto.EmployeeDTO;
+import com.kirti.employee_management_system.dto.UploadImageResponse;
 import com.kirti.employee_management_system.entity.Department;
 import com.kirti.employee_management_system.entity.Employee;
 import com.kirti.employee_management_system.service.EmployeeService;
@@ -116,7 +119,15 @@ public class EmployeeController {
         return ResponseEntity.ok(
                 employeeService.searchEmployees(keyword));
     }
+    @PostMapping("/upload-image")
+    public UploadImageResponse uploadEmployeeImage(
+            @RequestParam("file") MultipartFile file) {
+
+        return employeeService.uploadEmployeeImage(file);
+    }
+    
    
     }
     	
+
     
