@@ -42,6 +42,13 @@ public class EmployeeController {
         	        .orElseThrow(() -> new RuntimeException("Department not found"));
 
         employee.setDepartment(department);
+        
+        employee.setPhone(employeeDTO.getPhone());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setDesignation(employeeDTO.getDesignation());
+        employee.setJoiningDate(employeeDTO.getJoiningDate());
+        employee.setStatus(employeeDTO.getStatus());
+        employee.setProfileImage(employeeDTO.getProfileImage());
 
         return employeeService.saveEmployee(employee);
     }

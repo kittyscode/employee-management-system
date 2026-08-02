@@ -50,23 +50,28 @@ public class EmployeeService {
 //    public Employee findById(Long id) {
 //        return employeeRepository.findById(id).orElse(null);
 //    }
-    // Update Employee
-    public Employee update(Long id, Employee employeeDetails) {
+	public Employee update(Long id, Employee employeeDetails) {
 
-        Employee employee = employeeRepository.findById(id).orElse(null);
+	    Employee employee = employeeRepository.findById(id).orElse(null);
 
-        if (employee != null) {
-            employee.setName(employeeDetails.getName());
-            employee.setEmail(employeeDetails.getEmail());
-            employee.setSalary(employeeDetails.getSalary());
-            employee.setDepartment(employeeDetails.getDepartment());
-           
-            return employeeRepository.save(employee);
-        }
+	    if (employee != null) {
 
-        return null;
-    }
+	        employee.setName(employeeDetails.getName());
+	        employee.setEmail(employeeDetails.getEmail());
+	        employee.setPhone(employeeDetails.getPhone());
+	        employee.setAddress(employeeDetails.getAddress());
+	        employee.setDesignation(employeeDetails.getDesignation());
+	        employee.setJoiningDate(employeeDetails.getJoiningDate());
+	        employee.setSalary(employeeDetails.getSalary());
+	        employee.setDepartment(employeeDetails.getDepartment());
+	        employee.setStatus(employeeDetails.getStatus());
+	        employee.setProfileImage(employeeDetails.getProfileImage());
 
+	        return employeeRepository.save(employee);
+	    }
+
+	    return null;
+	}
     // Delete Employee
     public void delete(Long id) {
         employeeRepository.deleteById(id);
