@@ -263,7 +263,11 @@ public class ProfileServiceImpl implements ProfileService {
 
 
             // save file
-
+            System.out.println("===== IMAGE UPLOAD =====");
+            System.out.println("uploadDir = " + uploadDir);
+            System.out.println("Original file = " + file.getOriginalFilename());
+            System.out.println("File size = " + file.getSize());
+            System.out.println("Is empty = " + file.isEmpty());
             Path filePath =
                     uploadPath.resolve(fileName);
 
@@ -275,7 +279,8 @@ public class ProfileServiceImpl implements ProfileService {
                     StandardCopyOption.REPLACE_EXISTING
             );
 
-
+            System.out.println("Saved successfully");
+            System.out.println(filePath.toAbsolutePath());
 
             // save filename in database
 
@@ -310,6 +315,7 @@ public class ProfileServiceImpl implements ProfileService {
             );
 
         }
+        
 
     }
 }
