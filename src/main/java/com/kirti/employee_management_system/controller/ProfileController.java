@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import com.kirti.employee_management_system.dto.ProfileResponse;
 import com.kirti.employee_management_system.dto.UpdateProfileRequest;
 import com.kirti.employee_management_system.service.ProfileService;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.kirti.employee_management_system.dto.ChangePasswordRequest;
 
 @RestController
 @RequestMapping("/api/profile")
-@CrossOrigin(origins="http://localhost:5173")
+@CrossOrigin(origins = {
+	    "http://localhost:5173",
+	    "https://employee-management-system-frontend-production-c574.up.railway.app"
+	})
 public class ProfileController {
 
 
