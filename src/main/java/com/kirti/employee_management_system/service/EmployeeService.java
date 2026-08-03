@@ -111,8 +111,10 @@ public class EmployeeService {
 
     }
     public UploadImageResponse uploadEmployeeImage(MultipartFile file) {
-
+    		
         try {
+        	logger.info("===== IMAGE UPLOAD STARTED =====");
+        	logger.info("Original file: {}", file.getOriginalFilename());
 
             Path uploadPath = Paths.get(uploadDir);
 
@@ -138,7 +140,7 @@ public class EmployeeService {
                     filePath,
                     StandardCopyOption.REPLACE_EXISTING
             );
-
+            logger.info("Saved image at {}", filePath.toAbsolutePath());
             UploadImageResponse response = new UploadImageResponse();
 
             response.setFileName(fileName);

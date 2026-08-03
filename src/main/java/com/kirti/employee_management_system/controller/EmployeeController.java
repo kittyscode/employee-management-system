@@ -1,5 +1,6 @@
 package com.kirti.employee_management_system.controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import com.kirti.employee_management_system.dto.UploadImageResponse;
 import com.kirti.employee_management_system.entity.Department;
 import com.kirti.employee_management_system.entity.Employee;
 import com.kirti.employee_management_system.service.EmployeeService;
+
+
 import jakarta.validation.Valid;
 @CrossOrigin(origins = {
 	    "http://localhost:5173",
@@ -119,14 +122,15 @@ public class EmployeeController {
         return ResponseEntity.ok(
                 employeeService.searchEmployees(keyword));
     }
-    @PostMapping("/upload-image")
-    public UploadImageResponse uploadEmployeeImage(
-            @RequestParam("file") MultipartFile file) {
+    @PostMapping(
+    	    value="/upload-image",
+    	    consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    	)
+    	public UploadImageResponse uploadEmployeeImage(
+    	        @RequestParam("file") MultipartFile file) {
 
-        return employeeService.uploadEmployeeImage(file);
-    }
-    
-   
+    	    return employeeService.uploadEmployeeImage(file);
+    	}
     }
     	
 
