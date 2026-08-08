@@ -1,29 +1,27 @@
 # Employee Management System — Backend
 
-A RESTful backend application for managing employees, departments, authentication, and employee-related reports.
+A RESTful backend application for managing employees, departments, and organizational reports.
 
-The project is built using **Java and Spring Boot** and follows a layered backend architecture with controllers, services, repositories, DTOs, entities, validation, and database integration.
+The application is built using **Java, Spring Boot, Spring Data JPA, Hibernate, and MySQL** and provides REST APIs that are consumed by a React frontend.
 
 ---
 
 ## 🚀 Project Overview
 
-The Employee Management System provides APIs to manage employees and departments in an organization.
+The Employee Management System backend provides APIs for managing employee and department information.
 
-The backend supports:
+The application currently supports:
 
-- Employee management
-- Department management
-- User authentication
+- Employee CRUD operations
+- Department CRUD operations
 - Employee status management
 - Department assignment
-- Employee search and pagination
-- Dashboard reports
-- Payroll calculation
-- REST API integration
-- MySQL database persistence
-
-The backend is designed to work with a React frontend.
+- Employee pagination
+- Dashboard statistics
+- Total payroll calculation
+- MySQL database integration
+- REST API integration with React frontend
+- CORS configuration
 
 ---
 
@@ -32,11 +30,10 @@ The backend is designed to work with a React frontend.
 ### 👨‍💼 Employee Management
 
 - Add employee
-- Get all employees
-- Get employee by ID
+- View all employees
+- View employee by ID
 - Update employee
 - Delete employee
-- Search employees
 - Pagination
 - Employee status management
 
@@ -44,7 +41,6 @@ Employee information includes:
 
 - Name
 - Email
-- Phone
 - Salary
 - Department
 - Status
@@ -54,19 +50,24 @@ Employee information includes:
 
 ### 🏢 Department Management
 
-- Create department
-- Get all departments
-- Get department by ID
+- Add department
+- View all departments
+- View department by ID
 - Update department
 - Delete department
 - Assign employees to departments
 
-Example departments:
+---
 
-```text
-Engineering
-Human Resources
-Finance
-Sales
-Marketing
-Operations
+### 📊 Dashboard Reports
+
+The backend provides dashboard statistics including:
+
+- Total employees
+- Total departments
+- Active employees
+- Total payroll
+
+Example API:
+
+GET /api/reports/dashboard
