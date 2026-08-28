@@ -20,10 +20,10 @@ import com.kirti.employee_management_system.service.EmployeeService;
 
 
 import jakarta.validation.Valid;
-@CrossOrigin(origins = {
-	    "http://localhost:5173",
-	    "https://employee-management-system-frontend-production-c574.up.railway.app"
-	})
+//@CrossOrigin(origins = {
+////	    "http://localhost:5173",
+////	    "https://employee-management-system-frontend-production-c574.up.railway.app"
+//	})
 @RestController
 @RequestMapping("/api/employees")
 //@CrossOrigin(origins = "*") // Optional: allows requests from frontend

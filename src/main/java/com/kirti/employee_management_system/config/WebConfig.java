@@ -20,33 +20,25 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry
-            .addResourceHandler("/uploads/profile/**")
+            .addResourceHandler("/api/uploads/profile/**")   // add /api prefix
             .addResourceLocations("file:" + uploadDir + "/");
- 
-}
-    @Bean
-    public CorsFilter corsFilter() {
-
-    	
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowCredentials(true);
-
-        configuration.addAllowedOrigin("http://localhost:5173");
-        configuration.addAllowedOrigin("https://employee-management-system-frontend-production-c574.up.railway.app");
-
-        configuration.addAllowedHeader("*");
-
-        configuration.addAllowedMethod("*");
-
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**", configuration);
-
-        return new CorsFilter(source);
-        
     }
-    
+   @Bean
+public CorsFilter corsFilter() {
+
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowCredentials(true);
+    configuration.addAllowedOrigin("http://localhost:5173");
+    configuration.addAllowedOrigin("https://employee-management-system-frontend-ruddy.vercel.app"); // your actual Vercel frontend URL
+    configuration.addAllowedHeader("*");
+    configuration.addAllowedMethod("*");
+
+    UrlBasedCorsConfigurationSource source =
+            new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return new CorsFilter(source);
+}
+
+  
 
 }

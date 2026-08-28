@@ -13,10 +13,10 @@ import com.kirti.employee_management_system.dto.ChangePasswordRequest;
 
 @RestController
 @RequestMapping("/api/profile")
-@CrossOrigin(origins = {
-	    "http://localhost:5173",
-	    "https://employee-management-system-frontend-production-c574.up.railway.app"
-	})
+//@CrossOrigin(origins = {
+//	    "http://localhost:5173",
+//	    "https://employee-management-system-frontend-production-c574.up.railway.app"
+//	})
 public class ProfileController {
 
 
