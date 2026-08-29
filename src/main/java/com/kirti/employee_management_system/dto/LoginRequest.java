@@ -7,7 +7,7 @@ public class LoginRequest {
 
     // Default Constructor
     public LoginRequest() {
-    	System.out.println("******** LOGIN API HIT ********");
+    	
     }
     
 
@@ -30,10 +30,13 @@ public class LoginRequest {
     // Getter for password
     public String getPassword() {
         return password;
+        
     }
 
     // Setter for password
     public void setPassword(String password) {
         this.password = password;
+        
     }
+    
 }
