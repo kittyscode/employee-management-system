@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.JoinColumn;
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
