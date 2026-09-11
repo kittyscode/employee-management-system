@@ -113,7 +113,7 @@ public class SecurityConfig {
 
         configuration.setAllowedOrigins(List.of(
             "http://localhost:5173",
-            "https://employee-management-system-frontend-ruddy.vercel.app"
+            "https://employee-management-system-frontend-l49gusl1c.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of(
