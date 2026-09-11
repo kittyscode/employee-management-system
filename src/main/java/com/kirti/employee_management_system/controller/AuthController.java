@@ -26,30 +26,59 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+//    @PostMapping("/login")
+//    public LoginResponse login(@RequestBody LoginRequest request) {
+//
+//        // Authenticate username & password
+//    	System.out.println("******** LOGIN API HIT ********");
+//    	System.out.println("Username = " + request.getUsername());
+//    	System.out.println("Password = " + request.getPassword());
+//        Authentication authentication =
+//                authenticationManager.authenticate(
+//                        new UsernamePasswordAuthenticationToken(
+//                                request.getUsername(),
+//                                request.getPassword()));
+//
+//        // Fetch user from database
+//        User user = userRepository
+//                .findByUsername(request.getUsername())
+//                .orElseThrow(() ->
+//                        new RuntimeException("User not found"));
+//
+//        // Generate JWT Token
+//        String token =
+//                jwtTokenProvider.generateToken(user.getUsername());
+//
+//        // Return token + user details
+//        return new LoginResponse(
+//                token,
+//                user.getUsername(),
+//                user.getRole());
+//    }
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
 
-        // Authenticate username & password
-    	System.out.println("******** LOGIN API HIT ********");
-    	System.out.println("Username = " + request.getUsername());
-    	System.out.println("Password = " + request.getPassword());
+        System.out.println("******** LOGIN API HIT ********");
+        System.out.println("Username = " + request.getUsername());
+
         Authentication authentication =
                 authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(
                                 request.getUsername(),
                                 request.getPassword()));
 
-        // Fetch user from database
-        User user = userRepository
-                .findByUsername(request.getUsername())
-                .orElseThrow(() ->
-                        new RuntimeException("User not found"));
+        System.out.println("******** AUTHENTICATION SUCCESS ********");
 
-        // Generate JWT Token
-        String token =
-                jwtTokenProvider.generateToken(user.getUsername());
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Return token + user details
+        System.out.println("User found = " + user.getUsername());
+        System.out.println("Role = " + user.getRole());
+
+        String token = jwtTokenProvider.generateToken(user.getUsername());
+
+        System.out.println("******** JWT GENERATED SUCCESSFULLY ********");
+
         return new LoginResponse(
                 token,
                 user.getUsername(),

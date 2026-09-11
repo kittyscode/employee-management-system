@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpMethod;
 import java.util.List;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -43,20 +44,17 @@ public class SecurityConfig {
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-            // Authorization Rules
             .authorizeHttpRequests(auth -> auth
-
-            		.requestMatchers(
-            		        "/api/auth/**",
-            		        "/api/employees/**",
-            		        "/api/departments/**",
-            		        "/api/reports/**",
-            		        "/api/notifications/**",
-            		        "/api/messages/**"
-            		).permitAll()
-
-            		.anyRequest().permitAll())
-
+            	    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            	    .requestMatchers(
+            	        "/api/auth/**",
+            	        "/api/employees/**",
+            	        "/api/departments/**",
+            	        "/api/reports/**",
+            	        "/api/notifications/**",
+            	        "/api/messages/**"
+            	    ).permitAll()
+            	    .anyRequest().permitAll())
             // JWT Filter
             .addFilterBefore(
                     jwtAuthenticationFilter,
@@ -80,25 +78,54 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//
+//        CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowedOrigins(List.of(
+//                "http://localhost:5173",
+//                "https://employee-management-system-frontend-ruddy.vercel.app"
+//        ));
+//
+//        configuration.setAllowedMethods(List.of(
+//                "GET",
+//                "POST",
+//                "PUT",
+//                "DELETE",
+//                "OPTIONS"
+//        ));
+//
+//        configuration.setAllowedHeaders(List.of("*"));
+//        configuration.setAllowCredentials(true);
+//
+//        UrlBasedCorsConfigurationSource source =
+//                new UrlBasedCorsConfigurationSource();
+//
+//        source.registerCorsConfiguration("/**", configuration);
+//
+//        return source;
+//    }
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:5173",
-                "https://employee-management-system-frontend-ruddy.vercel.app"
+            "http://localhost:5173",
+            "https://employee-management-system-frontend-ruddy.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of(
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE",
-                "OPTIONS"
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE",
+            "OPTIONS"
         ));
 
         configuration.setAllowedHeaders(List.of("*"));
+
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
