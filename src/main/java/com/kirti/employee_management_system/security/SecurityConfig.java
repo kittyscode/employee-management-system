@@ -32,33 +32,33 @@ public class SecurityConfig {
 
 //        http
 //            .cors(cors -> {})
-    	http
-        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-            .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable())
 
-            .exceptionHandling(exception ->
-                    exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+                .exceptionHandling(exception ->
+                        exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
 
-            // Stateless Session
-            .sessionManagement(session ->
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Stateless Session
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-            .authorizeHttpRequests(auth -> auth
-            	    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-            	    .requestMatchers(
-            	        "/api/auth/**",
-            	        "/api/employees/**",
-            	        "/api/departments/**",
-            	        "/api/reports/**",
-            	        "/api/notifications/**",
-            	        "/api/messages/**"
-            	    ).permitAll()
-            	    .anyRequest().permitAll())
-            // JWT Filter
-            .addFilterBefore(
-                    jwtAuthenticationFilter,
-                    UsernamePasswordAuthenticationFilter.class);
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/employees/**",
+                                "/api/departments/**",
+                                "/api/reports/**",
+                                "/api/notifications/**",
+                                "/api/messages/**"
+                        ).permitAll()
+                        .anyRequest().permitAll())
+                // JWT Filter
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -66,7 +66,7 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
 
-    	
+
         return new BCryptPasswordEncoder();
     }
 
@@ -78,54 +78,25 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//
-//        CorsConfiguration configuration = new CorsConfiguration();
-//
-//        configuration.setAllowedOrigins(List.of(
-//                "http://localhost:5173",
-//                "https://employee-management-system-frontend-ruddy.vercel.app"
-//        ));
-//
-//        configuration.setAllowedMethods(List.of(
-//                "GET",
-//                "POST",
-//                "PUT",
-//                "DELETE",
-//                "OPTIONS"
-//        ));
-//
-//        configuration.setAllowedHeaders(List.of("*"));
-//        configuration.setAllowCredentials(true);
-//
-//        UrlBasedCorsConfigurationSource source =
-//                new UrlBasedCorsConfigurationSource();
-//
-//        source.registerCorsConfiguration("/**", configuration);
-//
-//        return source;
-//    }
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-            "http://localhost:5173",
-            "https://employee-management-system-frontend-l49gusl1c.vercel.app"
+                "http://localhost:5173",
+                "https://employee-management-system-frontend-ruddy.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of(
-            "GET",
-            "POST",
-            "PUT",
-            "DELETE",
-            "OPTIONS"
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS"
         ));
 
         configuration.setAllowedHeaders(List.of("*"));
-
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
@@ -135,4 +106,34 @@ public class SecurityConfig {
 
         return source;
     }
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//
+//        CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowedOrigins(List.of(
+//            "http://localhost:5173",
+//            "https://employee-management-system-frontend-l49gusl1c.vercel.app"
+//        ));
+//
+//        configuration.setAllowedMethods(List.of(
+//            "GET",
+//            "POST",
+//            "PUT",
+//            "DELETE",
+//            "OPTIONS"
+//        ));
+//
+//        configuration.setAllowedHeaders(List.of("*"));
+//
+//        configuration.setAllowCredentials(true);
+//
+//        UrlBasedCorsConfigurationSource source =
+//                new UrlBasedCorsConfigurationSource();
+//
+//        source.registerCorsConfiguration("/**", configuration);
+//
+//        return source;
+//    }
+//}
 }
